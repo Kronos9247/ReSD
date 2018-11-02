@@ -1,0 +1,11 @@
+@text-types: h1, h2, h3, h4, h5, h6, p;
+
+@orientation: {
+  left: left; center: center; right: right;
+}
+
+each(@orientation, {
+  .text-@{value} {
+    text-align: @value;
+  }
+});

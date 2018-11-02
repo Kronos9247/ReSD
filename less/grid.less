@@ -1,0 +1,49 @@
+@grid-sizes: {
+  mb: 320px;
+  tb: 768px;
+  dt: 1024px;
+}
+
+.grid-subsizes() {
+  /*4lb: 25%;
+  3lb: 33.3%;
+  2lb: 50%;
+  1lb: 100%;*/
+
+  1lb: 8.3%;
+  4lb: 33.3%;
+  6lb: 50%;
+  8lb: 66.6%;
+  12lb: 100%;
+}
+
+.grid-layout {
+  box-sizing: border-box;
+  width: 100%;
+
+  > .grid-tow {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  each(@grid-sizes, {
+    /*.grid-@{key} {
+      @media only screen and (min-width: @value) {
+        flex-direction: column;
+      }
+    }*/
+
+    each(.grid-subsizes(), .(@v, @k, @i) {
+      .grid-@{key}-@{k} {
+        @media (min-width: @value) {
+          width: @v;
+          float: left;
+        }
+      }
+    });
+  });
+}
+
+.overflow {
+  overflow: auto;
+}
